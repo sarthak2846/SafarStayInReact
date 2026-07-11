@@ -2,9 +2,7 @@ import User from "../model/user.model.js";
 import bcrypt from 'bcrypt';
 import getToken from "../config/token.js";
 import jwt from 'jsonwebtoken';
-import transporter from "../config/nodeMailer.js";
-
-
+import resend from "../config/nodeMailer.js";
 
 export const signUp = async (req, res) => {
   try {
@@ -31,21 +29,13 @@ export const signUp = async (req, res) => {
     });
 
     
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: user.email,
+     await resend.emails.send({
+      from: 'onboarding@resend.dev', 
+      to: user.email, 
       subject: "OTP VERIFICATION",
-      text: `Your OTP is ${otp}. It will expire in 5 minutes. Verify your account using this email.`,
-    };
-
-     // await transporter.sendMail(mailOptions);
-    transporter.verify(function (error, success) {
-  if (error) {
-    console.log("Nodemailer configuration error:", error);
-  } else {
-    console.log("Server is ready to take our messages");
-  }
-});
+      html: `<p>Your OTP is <strong>${otp}</strong>. It will expire in 5 minutes. Verify your account using this email.</p>`,
+    });
+ 
  
 
     
@@ -249,14 +239,13 @@ export const resendOtp = async (req, res) => {
     await user.save();
 
 
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: user.email,
-      subject: "NEW OTP VERIFICATION",
-      text: `Your new OTP is ${newOtp}. It will expire in 5 minutes. Verify your account using this email.`,
-    };
-    await transporter.sendMail(mailOptions);
-
+     await resend.emails.send({
+      from: 'onboarding@resend.dev', 
+      to: user.email, 
+      subject: "OTP VERIFICATION",
+      html: `<p>Your OTP is <strong>${otp}</strong>. It will expire in 5 minutes. Verify your account using this email.</p>`,
+    });
+    
   
     return res.status(200).json({ 
       message: "A fresh OTP has been sent to your email." 
@@ -297,13 +286,12 @@ export const requestVerificationOtp = async (req, res) => {
     await user.save();
 
     
-    const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: user.email,
-      subject: "ACCOUNT VERIFICATION OTP",
-      text: `Your new verification OTP is ${otp}. It will expire in 5 minutes.`,
-    };
-    await transporter.sendMail(mailOptions);
+     await resend.emails.send({
+      from: 'onboarding@resend.dev', 
+      to: user.email, 
+      subject: "OTP VERIFICATION",
+      html: `<p>Your OTP is <strong>${otp}</strong>. It will expire in 5 minutes. Verify your account using this email.</p>`,
+    });
 
     
     const verifyToken = jwt.sign(

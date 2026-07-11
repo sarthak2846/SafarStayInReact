@@ -28,7 +28,7 @@ export const signUp = async (req, res) => {
       isVerified: false
     });
 
- await apiInstance.sendTransacEmail({
+ await apiInstance.transactionalEmails.sendTransacEmail({
   sender: { email: "sarthaksingh20205@gmail.com", name: "SafarStay" }, 
   to: [{ email: user.email }],
   subject: "OTP VERIFICATION",
@@ -237,12 +237,14 @@ export const resendOtp = async (req, res) => {
     await user.save();
 
 
-     await apiInstance.sendTransacEmail({
+ 
+ await apiInstance.transactionalEmails.sendTransacEmail({
   sender: { email: "sarthaksingh20205@gmail.com", name: "SafarStay" }, 
   to: [{ email: user.email }],
   subject: "OTP VERIFICATION",
   htmlContent: `<p>Your OTP is <strong>${otp}</strong>. It will expire in 5 minutes.</p>`
 });
+ 
     
   
     return res.status(200).json({ 
@@ -284,12 +286,14 @@ export const requestVerificationOtp = async (req, res) => {
     await user.save();
 
     
-    await apiInstance.sendTransacEmail({
+  
+ await apiInstance.transactionalEmails.sendTransacEmail({
   sender: { email: "sarthaksingh20205@gmail.com", name: "SafarStay" }, 
   to: [{ email: user.email }],
   subject: "OTP VERIFICATION",
   htmlContent: `<p>Your OTP is <strong>${otp}</strong>. It will expire in 5 minutes.</p>`
 });
+ 
 
     
     const verifyToken = jwt.sign(

@@ -37,7 +37,11 @@ export const signUp = async (req, res) => {
       subject: "OTP VERIFICATION",
       text: `Your OTP is ${otp}. It will expire in 5 minutes. Verify your account using this email.`,
     };
-    await transporter.sendMail(mailOptions);
+  
+    transporter.sendMail(mailOptions, (err, info) => {
+  if (err) console.log("Nodemailer error:", err);
+  else console.log("Email sent:", info.response);
+});
 
     
     const verifyToken = jwt.sign(

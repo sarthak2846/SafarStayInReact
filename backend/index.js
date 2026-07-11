@@ -15,7 +15,7 @@ import bookingRouter from './routes/booking.route.js';
 const app = express();
 app.use(
   cors({
-    origin: "https://safarstayinreact.onrender.com",
+    origin: "https://safarstay.onrender.com",
     credentials: true,
   })
 );

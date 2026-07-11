@@ -1,7 +1,7 @@
 import React, { createContext, useState } from 'react'
 export const authDataContext = createContext();
 
-let serverUrl = 'https://safarstay-backend.onrender.'
+let serverUrl = 'https://safarstay-backend.onrender.com'
 
 
 function AuthContext({children}) {

@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { FaArrowLeftLong } from "react-icons/fa6";
-import Card from "../Components/Card";
+import Card from "../components/Card";
 import { userDataContect } from "../context/UserContext";
 
 function MyBooking() {

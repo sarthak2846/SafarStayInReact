@@ -24,7 +24,7 @@ SafarStay is a holiday-stay listing and booking platform with a React + Vite fro
 - Frontend: React, Vite, Tailwind (optional), React Router
 - Backend: Node.js, Express, MongoDB (Mongoose)
 - Image uploads: Cloudinary
-- Email: Nodemailer (Gmail)
+- Email: Brevo API Key
 
 ## Prerequisites
 

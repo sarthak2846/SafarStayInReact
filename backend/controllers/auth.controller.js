@@ -32,7 +32,41 @@ export const signUp = async (req, res) => {
   sender: { email: "sarthaksingh20205@gmail.com", name: "SafarStay" }, 
   to: [{ email: user.email }],
   subject: "OTP VERIFICATION",
-  htmlContent: `<p>Your OTP is <strong>${otp}</strong>. It will expire in 5 minutes.</p>`
+  htmlContent: `
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #ffffff;">
+      <!-- Header / Logo Area -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #333333; margin: 0; font-size: 24px; font-weight: 600;">SafarStay</h2>
+        <p style="color: #666666; font-size: 14px; margin-top: 4px;">Account Verification</p>
+      </div>
+      
+      <hr style="border: 0; border-top: 1px solid #eeeeee; margin-bottom: 24px;" />
+      
+      <!-- Body Content -->
+      <p style="color: #444444; font-size: 16px; line-height: 1.5; margin: 0 0 16px 0;">
+        Hello,
+      </p>
+      <p style="color: #444444; font-size: 16px; line-height: 1.5; margin: 0 0 24px 0;">
+        Thank you for registering! Please use the following One-Time Password (OTP) to complete your verification process. This code is active for <strong>5 minutes</strong>.
+      </p>
+      
+      <!-- OTP Box -->
+      <div style="text-align: center; background-color: #f4f6f9; border-radius: 6px; padding: 16px; margin-bottom: 24px; letter-spacing: 4px;">
+        <span style="font-size: 32px; font-weight: 700; color: #1e3a8a; font-family: monospace;">${otp}</span>
+      </div>
+      
+      <p style="color: #ff3b30; font-size: 13px; text-align: center; margin: 0 0 24px 0;">
+        ⚠️ For security reasons, do not share this code with anyone.
+      </p>
+      
+      <hr style="border: 0; border-top: 1px solid #eeeeee; margin-bottom: 16px;" />
+      
+      <!-- Footer -->
+      <p style="color: #999999; font-size: 12px; text-align: center; margin: 0;">
+        If you didn't request this email, you can safely ignore it.
+      </p>
+    </div>
+  `
 });
  
 
@@ -238,11 +272,45 @@ export const resendOtp = async (req, res) => {
 
 
  
- await apiInstance.transactionalEmails.sendTransacEmail({
+  await apiInstance.transactionalEmails.sendTransacEmail({
   sender: { email: "sarthaksingh20205@gmail.com", name: "SafarStay" }, 
   to: [{ email: user.email }],
   subject: "OTP VERIFICATION",
-  htmlContent: `<p>Your OTP is <strong>${otp}</strong>. It will expire in 5 minutes.</p>`
+  htmlContent: `
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #ffffff;">
+      <!-- Header / Logo Area -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #333333; margin: 0; font-size: 24px; font-weight: 600;">SafarStay</h2>
+        <p style="color: #666666; font-size: 14px; margin-top: 4px;">Account Verification</p>
+      </div>
+      
+      <hr style="border: 0; border-top: 1px solid #eeeeee; margin-bottom: 24px;" />
+      
+      <!-- Body Content -->
+      <p style="color: #444444; font-size: 16px; line-height: 1.5; margin: 0 0 16px 0;">
+        Hello,
+      </p>
+      <p style="color: #444444; font-size: 16px; line-height: 1.5; margin: 0 0 24px 0;">
+        Thank you for registering! Please use the following One-Time Password (OTP) to complete your verification process. This code is active for <strong>5 minutes</strong>.
+      </p>
+      
+      <!-- OTP Box -->
+      <div style="text-align: center; background-color: #f4f6f9; border-radius: 6px; padding: 16px; margin-bottom: 24px; letter-spacing: 4px;">
+        <span style="font-size: 32px; font-weight: 700; color: #1e3a8a; font-family: monospace;">${otp}</span>
+      </div>
+      
+      <p style="color: #ff3b30; font-size: 13px; text-align: center; margin: 0 0 24px 0;">
+        ⚠️ For security reasons, do not share this code with anyone.
+      </p>
+      
+      <hr style="border: 0; border-top: 1px solid #eeeeee; margin-bottom: 16px;" />
+      
+      <!-- Footer -->
+      <p style="color: #999999; font-size: 12px; text-align: center; margin: 0;">
+        If you didn't request this email, you can safely ignore it.
+      </p>
+    </div>
+  `
 });
  
     
@@ -287,13 +355,46 @@ export const requestVerificationOtp = async (req, res) => {
 
     
   
- await apiInstance.transactionalEmails.sendTransacEmail({
+  await apiInstance.transactionalEmails.sendTransacEmail({
   sender: { email: "sarthaksingh20205@gmail.com", name: "SafarStay" }, 
   to: [{ email: user.email }],
   subject: "OTP VERIFICATION",
-  htmlContent: `<p>Your OTP is <strong>${otp}</strong>. It will expire in 5 minutes.</p>`
+  htmlContent: `
+    <div style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 500px; margin: 0 auto; padding: 20px; border: 1px solid #e0e0e0; border-radius: 8px; background-color: #ffffff;">
+      <!-- Header / Logo Area -->
+      <div style="text-align: center; margin-bottom: 24px;">
+        <h2 style="color: #333333; margin: 0; font-size: 24px; font-weight: 600;">SafarStay</h2>
+        <p style="color: #666666; font-size: 14px; margin-top: 4px;">Account Verification</p>
+      </div>
+      
+      <hr style="border: 0; border-top: 1px solid #eeeeee; margin-bottom: 24px;" />
+      
+      <!-- Body Content -->
+      <p style="color: #444444; font-size: 16px; line-height: 1.5; margin: 0 0 16px 0;">
+        Hello,
+      </p>
+      <p style="color: #444444; font-size: 16px; line-height: 1.5; margin: 0 0 24px 0;">
+        Thank you for registering! Please use the following One-Time Password (OTP) to complete your verification process. This code is active for <strong>5 minutes</strong>.
+      </p>
+      
+      <!-- OTP Box -->
+      <div style="text-align: center; background-color: #f4f6f9; border-radius: 6px; padding: 16px; margin-bottom: 24px; letter-spacing: 4px;">
+        <span style="font-size: 32px; font-weight: 700; color: #1e3a8a; font-family: monospace;">${otp}</span>
+      </div>
+      
+      <p style="color: #ff3b30; font-size: 13px; text-align: center; margin: 0 0 24px 0;">
+        ⚠️ For security reasons, do not share this code with anyone.
+      </p>
+      
+      <hr style="border: 0; border-top: 1px solid #eeeeee; margin-bottom: 16px;" />
+      
+      <!-- Footer -->
+      <p style="color: #999999; font-size: 12px; text-align: center; margin: 0;">
+        If you didn't request this email, you can safely ignore it.
+      </p>
+    </div>
+  `
 });
- 
 
     
     const verifyToken = jwt.sign(

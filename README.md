@@ -1,114 +1,184 @@
 # SafarStay
 
-> Full-stack booking and listing application (React + Express + MongoDB).
+SafarStay is a full-stack holiday-stay booking platform built with React, Vite, Express, and MongoDB. It lets users browse listings, create and manage properties, book stays, and complete account verification through email OTPs.
 
-## Overview
+## Live Demo
 
-SafarStay is a holiday-stay listing and booking platform with a React + Vite frontend and an Express/MongoDB backend. The backend handles authentication, listings, bookings, image uploads (Cloudinary), and email notifications (Gmail/Nodemailer).
+- Production frontend: https://safarstay.onrender.com
+- Production API: https://safarstay.onrender.com/api
 
-## Features
+## What the app does
 
-- User authentication (signup, login, verify)
-- Create, view, and manage listings with image upload
-- Book listings and view bookings
-- Email notifications via Gmail
-- Location geocoding using OpenStreetMap Nominatim
+SafarStay provides a complete experience for property discovery and booking:
 
-## Repository Structure
+- User signup, login, logout, and email verification
+- Property listing creation with image uploads
+- Listing discovery, search, and detail views
+- Booking creation and cancellation
+- User profile flows for bookings and listings
+- Ratings and review flow for completed stays
 
-- `backend/` — Express server, routes, controllers, models, config
-- `frontend/` — React app (Vite)
+## Core features
 
-## Tech Stack
+- Secure authentication with JWT and cookie-based sessions
+- OTP verification for new user accounts
+- Cloudinary-backed image uploads for listings
+- Booking and listing management for users
+- Responsive UI built with React and Vite
+- REST APIs for auth, listings, bookings, and users
 
-- Frontend: React, Vite, Tailwind (optional), React Router
-- Backend: Node.js, Express, MongoDB (Mongoose)
-- Image uploads: Cloudinary
-- Email: Brevo API Key
+## Tech stack
+
+### Frontend
+- React 19
+- Vite
+- React Router DOM
+- React Toastify
+- Leaflet + React Leaflet
+- Tailwind CSS
+
+### Backend
+- Node.js
+- Express 5
+- MongoDB + Mongoose
+- JWT authentication
+- Cloudinary for media storage
+- Brevo email delivery for OTP emails
+
+## Project structure
+
+```text
+SafarStayInReact/
+├── backend/
+│   ├── config/
+│   ├── controllers/
+│   ├── middleware/
+│   ├── model/
+│   ├── routes/
+│   └── index.js
+├── frontend/
+│   ├── public/
+│   └── src/
+│       ├── components/
+│       ├── context/
+│       ├── pages/
+│       └── main.jsx
+└── README.md
+```
 
 ## Prerequisites
 
-- Node.js (v16+ recommended)
+Make sure you have the following installed:
+
+- Node.js 18+ recommended
 - npm or yarn
-- MongoDB (Atlas or local)
+- MongoDB Atlas or a local MongoDB instance
 
-## Environment Variables
+## Environment variables
 
-Create a `.env` file in the `backend/` folder with the following variables:
+Create a `.env` file inside the backend folder with the following values:
 
-- `MONGODB_URI` — MongoDB connection string
-- `PORT` — (optional) server port (default 8080)
-- `JWT_SECRET` — secret used to sign JWT tokens
-- `CLOUDINARY_CLOUD_NAME` — Cloudinary cloud name
-- `CLOUDINARY_API_KEY` — Cloudinary API key
-- `CLOUDINARY_API_SECRET` — Cloudinary API secret
-- `EMAIL_USER` — Gmail address used to send emails
-- `EMAIL_PASS` — App password for the Gmail account
-
-Example `backend/.env` (do NOT commit secrets):
-
-MONGODB_URI="your_mongo_connection_string"
-JWT_SECRET="your_jwt_secret"
-CLOUDINARY_CLOUD_NAME="your_cloud_name"
-CLOUDINARY_API_KEY="your_api_key"
-CLOUDINARY_API_SECRET="your_api_secret"
-EMAIL_USER="your@gmail.com"
-EMAIL_PASS="your_app_password"
+```env
+MONGODB_URI=your_mongodb_connection_string
 PORT=8080
+JWT_SECRET=your_jwt_secret
+CLOUDINARY_CLOUD_NAME=your_cloud_name
+CLOUDINARY_API_KEY=your_api_key
+CLOUDINARY_API_SECRET=your_api_secret
+EMAIL_USER=your_email@example.com
+EMAIL_PASS=your_app_password
+```
 
-## Quick Start
+> Do not commit secrets to version control. Keep your `.env` file local and private.
 
-1. Backend
+## Local development
+
+### 1) Install backend dependencies
 
 ```bash
 cd backend
 npm install
-# create .env with variables listed above
+```
+
+### 2) Install frontend dependencies
+
+```bash
+cd ../frontend
+npm install
+```
+
+### 3) Start the backend
+
+```bash
+cd backend
 npm start
 ```
 
-The backend listens on `PORT` (defaults to `8080`) and exposes API routes under `/api` (for example: `/api/auth`, `/api/listing`, `/api/booking`, `/api/user`). The server's CORS is configured to allow `http://localhost:5173` by default.
+The backend runs on port `8080` by default and exposes API routes under `/api`.
 
-2. Frontend
+### 4) Start the frontend
 
 ```bash
 cd frontend
-npm install
 npm run dev
 ```
 
-The frontend runs on Vite's default port (usually `5173`) and expects the backend to be available at the configured API base URL. If you need to change the backend base URL, update the API calls in `frontend/src` (typically where `axios` is configured).
+The frontend will usually run at:
 
-## Running Locally (combined)
+```text
+http://localhost:5173
+```
 
-- Start the backend (see above)
-- Start the frontend (see above)
-- Open `http://localhost:5173` in your browser
+## API overview
 
-## Notes & Troubleshooting
+### Auth
+- `POST /api/auth/signup`
+- `POST /api/auth/login`
+- `POST /api/auth/logout`
+- `POST /api/auth/verify-otp`
+- `POST /api/auth/resend-otp`
+- `POST /api/auth/request-verification`
 
-- Cloudinary: ensure your Cloudinary credentials are correct and the `folder` in `backend/config/cloudinary.js` is writable.
-- Gmail: Google often requires an App Password or enabling less-secure access; prefer App Passwords for production use.
-- Geocoding: the backend uses OpenStreetMap Nominatim for coordinates (no API key needed) — be mindful of rate limits.
-- If `nodemon` is not installed globally, install it or update `backend/package.json` scripts to use `node` instead.
+### Listings
+- `POST /api/listing/add`
+- `GET /api/listing/get`
+- `GET /api/listing/findlistingbyid/:id`
+- `GET /api/listing/search`
+- `PUT /api/listing/update/:id`
+- `DELETE /api/listing/delete/:id`
+- `PATCH /api/listing/rate/:id`
 
-## API Endpoints (overview)
+### Bookings
+- `POST /api/booking/create/:id`
+- `DELETE /api/booking/cancel/:id`
 
-- `POST /api/auth` — signup/login/verify routes (see `backend/routes/auth.routes.js`)
-- `GET/POST /api/listing` — create and fetch listings
-- `POST /api/booking` — create bookings
-- `GET /api/user` — user-related actions
+### Users
+- `GET /api/user` and related user routes
 
-Refer to the route files in `backend/routes/` for full details and payload shapes.
+## Production notes
+
+This project is structured for deployment with a separate frontend and backend. The backend is currently configured to allow production CORS access for the deployed frontend domain, so if you change hosting providers or domains, update the CORS origin in the backend entry file accordingly.
+
+## Deployment checklist
+
+Before deploying to production, confirm the following:
+
+- MongoDB connection string is valid and reachable
+- Cloudinary credentials are set correctly
+- JWT secret is strong and stored securely
+- Email provider credentials are configured properly
+- CORS settings match your deployed frontend domain
 
 ## Contributing
 
-- Fork the repo, create a feature branch, and open a PR with a clear description.
+Contributions are welcome. If you want to improve the project:
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Open a pull request with a clear description
 
 ## License
 
-MIT — modify as appropriate for your project.
+This project is available for personal and educational use. Update the license terms if you plan to distribute it commercially.
 
-## Contact
-
-If you want help running or extending this project, open an issue or contact the maintainer.

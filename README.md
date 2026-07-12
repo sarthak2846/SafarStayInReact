@@ -85,8 +85,7 @@ JWT_SECRET=your_jwt_secret
 CLOUDINARY_CLOUD_NAME=your_cloud_name
 CLOUDINARY_API_KEY=your_api_key
 CLOUDINARY_API_SECRET=your_api_secret
-EMAIL_USER=your_email@example.com
-EMAIL_PASS=your_app_password
+BREVO_API_KEY=your_api_key
 ```
 
 > Do not commit secrets to version control. Keep your `.env` file local and private.

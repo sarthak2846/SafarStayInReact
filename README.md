@@ -5,7 +5,7 @@ SafarStay is a full-stack holiday-stay booking platform built with React, Vite, 
 ## Live Demo
 
 - Production frontend: https://safarstay.onrender.com
-- Production API: https://safarstay.onrender.com/api
+
 
 ## What the app does
 

@@ -45,12 +45,17 @@ export const addListing = async(req,res)=>{
 
 
     } 
-    catch (error) {
-          console.log(error);
+    // catch (error) {
+    //       console.log(error);
     
-        res.status(500).json({message:` ADD LISTING ERROR : ${error}`})
+    //     res.status(500).json({message:` ADD LISTING ERROR : ${error}`})
         
-    }
+    // }
+
+    catch (error) {
+    console.error(error);
+    res.status(500).json({ message: error.message || "An unexpected server error occurred" });
+}
 }
 
 

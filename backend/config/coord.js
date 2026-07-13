@@ -1,28 +1,37 @@
 async function getCoords(location) {
-
-  const response = await fetch(
-    `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(location)}`,
-    {
-      headers: {
-        "User-Agent": "MajorProject/1.0"
-      }
+  try {
+    const apiKey = process.env.MAPTILER_API_KEY;
+    if (!apiKey) {
+      console.error("⚠️ Missing MAPTILER_API_KEY environment variable.");
+      return null;
     }
-  );
 
-  const data = await response.json();
+    const response = await fetch(
+      `https://api.maptiler.com/geocoding/${encodeURIComponent(location)}.json?key=${apiKey}&limit=1`
+    );
 
-  if (data.length === 0) {
+    if (!response.ok) {
+      console.error(`MapTiler API Error: ${response.status}`);
+      return null;
+    }
+
+    const data = await response.json();
+
+    if (!data.features || data.features.length === 0) {
+      return null;
+    }
+
+    const [longitude, latitude] = data.features[0].geometry.coordinates;
+
+    return {
+      type: "Point",
+      coordinates: [longitude, latitude]
+    };
+
+  } catch (error) {
+    console.error("Error in MapTiler getCoords:", error.message);
     return null;
   }
-
-  const latitude = parseFloat(data[0].lat);
-  const longitude = parseFloat(data[0].lon);
-
-  // GeoJSON format
-  return {
-    type: "Point",
-    coordinates: [longitude, latitude]
-  };
 }
 
 export default getCoords;

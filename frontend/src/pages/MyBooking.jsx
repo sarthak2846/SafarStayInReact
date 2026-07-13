@@ -12,7 +12,7 @@ function MyBooking() {
   return (
     <div className="w-[100vw] min-h-[100vh] flex items-center justify-start flex-col gap-[50px] relative  px-[20px]">
       <div
-        className="w-[50px] h-[50px] bg-[red] cursor-pointer absolute top-[10%] left-[20px] rounded-[50%] flex items-center justify-center "
+        className="w-[50px] h-[50px] bg-[red] cursor-pointer absolute top-[4%] md:top-[10%] left-[20px] rounded-[50%] flex items-center justify-center z-10"
         onClick={() => navigate("/")}
       >
         <FaArrowLeftLong className="w-[25px] h-[25px] text-[white]" />

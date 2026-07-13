@@ -2,7 +2,7 @@ async function getCoords(location) {
   try {
     const apiKey = process.env.MAPTILER_API_KEY;
     if (!apiKey) {
-      console.error("Missing MAPTILER_API_KEY environment variable");
+      console.error("Missing MAPTILER_API_KEY environment variable....");
       return null;
     }
 

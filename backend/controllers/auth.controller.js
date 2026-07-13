@@ -215,7 +215,11 @@ export const logIn = async (req, res) => {
 export const logOut = async (req,res)=>{
     try
     {
-       res.clearCookie("token");
+      res.clearCookie("token", {
+      httpOnly: true,
+      secure: true,
+      sameSite: 'none',
+    });
        return res.status(200).json({message:'logout successfully'})
     }
     catch(error)
@@ -296,7 +300,7 @@ export const resendOtp = async (req, res) => {
       
       <!-- OTP Box -->
       <div style="text-align: center; background-color: #f4f6f9; border-radius: 6px; padding: 16px; margin-bottom: 24px; letter-spacing: 4px;">
-        <span style="font-size: 32px; font-weight: 700; color: #1e3a8a; font-family: monospace;">${otp}</span>
+        <span style="font-size: 32px; font-weight: 700; color: #1e3a8a; font-family: monospace;">${newOtp}</span>
       </div>
       
       <p style="color: #ff3b30; font-size: 13px; text-align: center; margin: 0 0 24px 0;">

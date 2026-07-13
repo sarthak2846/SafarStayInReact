@@ -10,11 +10,10 @@ function MyBooking() {
 
   return (
     <div className="w-full min-h-screen flex items-center justify-start flex-col gap-8 px-4 sm:px-8 bg-gray-50">
-      
-      {/* STICKY HEADER CONTAINER */}
+
       <div className="sticky top-0 z-50 w-full max-w-[1280px] flex items-center justify-between gap-6 py-4 bg-gray-50/90 backdrop-blur-sm border-b border-gray-100">
         
-        {/* Back Button */}
+      
         <button
           className="w-12 h-12 bg-red-500 text-white cursor-pointer rounded-full flex items-center justify-center shadow-md hover:bg-red-600 active:scale-95 transition-all flex-shrink-0 ml-2"
           onClick={() => navigate("/")}
@@ -23,16 +22,15 @@ function MyBooking() {
           <FaArrowLeftLong className="w-5 h-5" />
         </button>
 
-        {/* My Bookings Title */}
+      
         <div className="flex-1 border border-gray-200/80 py-3 px-6 flex items-center justify-center text-xl md:text-2xl rounded-xl text-gray-800 font-bold tracking-wide shadow-sm bg-white mx-2">
           MY BOOKINGS
         </div>
         
-        {/* Balanced spacer so the title stays perfectly centered */}
+       
         <div className="w-12 mr-2 hidden sm:block"></div>
       </div>
 
-      {/* SCROLLABLE BOOKINGS CONTENT */}
       <div className="w-full max-w-[1280px] flex items-center justify-center md:justify-start gap-6 flex-wrap pb-10">
         {userData?.booking && userData.booking.length > 0 ? (
           userData.booking.map((list) => (
